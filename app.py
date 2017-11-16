@@ -29,33 +29,60 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "input.PWDreset":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    zone = parameters.get("email")
+    if req.get("result").get("action") == "input.PWDreset":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        zone = parameters.get("email")
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ%$#!"
-    pw_length = 15
-    mypw = ""
+        alphabet = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ%$#!"
+        pw_length = 15
+        mypw = ""
     
-    for i in range(pw_length):
-        next_index = random.randrange(len(alphabet))
-        mypw = mypw + alphabet[next_index]
-    print("PWD Result:")
-    print(mypw)
-    speech = "Password for the id " + zone + " has been reset to " + mypw
-    
-    print("Response:")
-    print(speech)
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        #"contextOut": [],
-        "source": "PasswordGenerator"
-    }
+        for i in range(pw_length):
+            next_index = random.randrange(len(alphabet))
+            mypw = mypw + alphabet[next_index]
+        print("PWD Result:")
+        print(mypw)
+        speech = "Password for the id " + zone + " has been reset to " + mypw
+        
+        print("Response:")
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            #"contextOut": [],
+            "source": "PasswordGenerator"
+        }
+    elif req.get("result").get("action") == "MyPWDReset.MyPWDReset-custom":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        zone = parameters.get("#MyPWDReset-followup.email")
 
+        alphabet = "0123456789"
+        pw_length = 9
+        mypw = ""
+    
+        for i in range(pw_length):
+            next_index = random.randrange(len(alphabet))
+            mypw = mypw + alphabet[next_index]
+        print("PWD Result:")
+        print(mypw)
+        speech = "A ticket has been raised with the support team on your behalf. Ticket number for your reference is " + mypw + ". The support team will contact you at " + zone + "."
+        
+        print("Response:")
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            #"contextOut": [],
+            "source": "TicketGenerator"
+        }
+    
+    else
+    	return{}
+    	
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
