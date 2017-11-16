@@ -35,7 +35,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("email")
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-+_&%$#@!"
+    alphabet = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ%$#!"
     pw_length = 15
     mypw = ""
     
