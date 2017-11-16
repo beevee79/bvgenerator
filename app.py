@@ -80,7 +80,7 @@ def makeWebhookResult(req):
             "source": "TicketGenerator"
         }
     
-    else
+    else:
     	return{}
     	
 if __name__ == '__main__':
