@@ -57,7 +57,7 @@ def makeWebhookResult(req):
     elif req.get("result").get("action") == "MyPWDReset.MyPWDReset-custom":
         result = req.get("result")
         parameters = result.get("parameters")
-        zone = parameters.get("mypwdreset-followup.email")
+        zone = parameters.get("mypwdreset-followup.email.original")
 
         alphabet = "0123456789"
         pw_length = 9
