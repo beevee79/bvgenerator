@@ -80,6 +80,24 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "TicketGenerator"
         }
+    elif req.get("result").get("action") == "password.unlock":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        zone = parameters.get("email")
+
+        print("Unlock Result:")
+        print(mypw)
+        speech = "The password for your login ID: " + zone + " has been unlocked. Kindly use your current password and try logging in."
+        
+        print("Response:")
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            #"contextOut": [],
+            "source": "UnlockPassword"
+        }
     else:
     	return{}
     	
