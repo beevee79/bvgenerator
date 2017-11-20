@@ -86,7 +86,7 @@ def makeWebhookResult(req):
         zone = parameters.get("email")
 
         print("Unlock Result:")
-        print(mypw)
+        print(zone)
         speech = "The password for your login ID: " + zone + " has been unlocked. Kindly use your current password and try logging in."
         
         print("Response:")
