@@ -57,7 +57,8 @@ def makeWebhookResult(req):
     elif req.get("result").get("action") == "password_reset.password_reset-custom":
         result = req.get("result")
         parameters = result.get("parameters")
-        zone = parameters.get("password_reset.email.original}")
+        zone = parameters.get("email")
+        subscription = parameters.get("subsno")
 
         alphabet = "0123456789"
         pw_length = 8
@@ -66,9 +67,9 @@ def makeWebhookResult(req):
         for i in range(pw_length):
             next_index = random.randrange(len(alphabet))
             mypw = mypw + alphabet[next_index]
-        print("PWD Result:")
+        print("Ticket Result:")
         print(mypw)
-        speech = "A ticket has been raised with the support team on your behalf. Ticket number for your reference is " + mypw + ". The support team will contact you at " + zone + "."
+        speech = "A ticket has been raised with the support team on your behalf. Ticket number for your reference is " + mypw + ". The support team will contact you to help with your login issues with user " + zone + " under subscription " + subscription + "."
         
         print("Response:")
         print(speech)
